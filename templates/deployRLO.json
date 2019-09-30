@@ -96,6 +96,23 @@
                     "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployServerFarms.json')]"
                 }
             }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "webSiteTemplate",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/serverFarmTemplate"
+            ],
+            "apiVersion": "2019-05-01",
+            "properties": {
+                "mode":"Incremental",
+                "parameters": {
+                    "rloCommon": { "vale": "[variables('rloCommon')]" }
+                },
+                "templateLink": {
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')]"
+                }
+            }
         }
     ]
 }

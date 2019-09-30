@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "rloCommon": {
+            "type": "object"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-11-01",
+            "location": "[parameters('rloCommon').location]",
+            "properties": {
+                "name": "ComtradeRLO",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'rloServerFarm')]"
+            },
+            "resources": [
+                {
+                    "name": "MSDeploy",
+                    "type": "extensions",
+                    "location": "[parameters('rloCommon').location]",
+                    "apiVersion": "2018-11-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites','ComtradeRLO')]"
+                    ],
+                    "properties": {
+                        "packageUri": "[concat(parameters('rloCommon').baseArtifactLocation,'webapp/package.zip')]",
+                        "dbType": "",
+                        "connectionString": "",
+                        "setParameters": {
+                            "IIS Web Application Name": "Comtrade RLO"
+                        },
+                        "appSettings": [{
+                            "Name": "",
+                            "Value": ""
+                        }]
+                    }
+                },
+                {
+                    "apiVersion": "2018-11-01",
+                    "name": "appsettings",
+                    "type": "config",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', 'ComtradeRLO')]"
+                    ],
+                    "properties": {
+                        "connectionStrings": "[concat('Data Source=tcp:', reference(parameters('rloCommon').publicIpAddressName).dnsSettings.fqdn, ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
+                    }
+                }
+            ]
+        }
+    ]

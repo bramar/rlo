@@ -15,6 +15,10 @@
             "kind": "app",
             "sku": {
                 "name": "[parameters('rloCommon').serverFarmSku]"
+            },
+            "properties": {
+                "name": "RLO",
+                "numberOfWorkers": 1
             }
         }
     ],
