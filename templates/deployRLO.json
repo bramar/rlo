@@ -99,10 +99,7 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "name": "webSiteTemplate",
-            "dependsOn": [
-                "Microsoft.Resources/deployments/serverFarmTemplate"
-            ],
+            "name": "networkTemplate",
             "apiVersion": "2019-05-01",
             "properties": {
                 "mode":"Incremental",
@@ -110,7 +107,7 @@
                     "rloCommon": { "value": "[variables('rloCommon')]" }
                 },
                 "templateLink": {
-                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')]"
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/network.json')]"
                 }
             }
         }
