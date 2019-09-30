@@ -54,6 +54,25 @@
                     "uri": "[uri(parameters('rloCommon').baseArtifactLocation, 'templates/publicip.json')]"
                 }
             }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-05-01",
+            "name": "fetchIpAddress",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/publicIPAddress"
+            ],
+            "properties": {
+                "mode":"Incremental",
+                "templateLink": {
+                    "uri": "[uri(parameters('rloCommon').baseArtifactLocation, 'templates/fetchPublicIP.json')]"
+                },
+                "parameters": {
+                    "publicIPAddressId": {
+                        "value": "[reference('publicIPAddress').outputs.publicIpId.value]"
+                    }
+                }
+            }
         }
     ]
 }

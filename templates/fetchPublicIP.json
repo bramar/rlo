@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "publicIPAddressId": {
+            "type": "string",
+            "defaultValue": "nestedPublicIp"
+        }
+    },
+    "resources": [],
+    "outputs": {
+        "ipAddress": {
+            "value": "[reference(parameters('publicIPAddressId'), '2018-12-01').ipAddress]",
+            "type": "string"
+        },
+        "domainNameLabel": {
+            "value": "[reference(parameters('publicIPAddressId'), '2018-12-01').dnsSettings.fqdn]",
+            "type": "string"
+        }
+    }
+}
