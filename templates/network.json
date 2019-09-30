@@ -9,7 +9,7 @@
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2017-05-10",
+            "apiVersion": "2019-05-01",
             "name": "vNetTemplate",
             "properties": {
                 "mode": "Incremental",
@@ -25,7 +25,7 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2017-05-10",
+            "apiVersion": "2019-05-01",
             "dependsOn": [
                 "Microsoft.Resources/deployments/vNetTemplate"
             ],
@@ -38,6 +38,20 @@
                 },
                 "templateLink": {
                     "uri": "[uri(parameters('rloCommon').baseArtifactLocation, 'templates/network-subnets.json')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-05-01",
+            "name": "publicIPAddress",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "tEduCommon": { "value": "[parameters('rloCommon')]"}
+                },
+                "templateLink": {
+                    "uri": "[uri(parameters('rloCommon').baseArtifactLocation, 'templates/publicip.json')]"
                 }
             }
         }
