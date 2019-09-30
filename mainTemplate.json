@@ -1,8 +1,14 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "variables": {},
+    "parameters": {
+        "location": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "_artifactLocation": "[deployment().properties.templateLink.uri]"
+    },
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
@@ -14,6 +20,21 @@
                     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                     "contentVersion": "1.0.0.0",
                     "resources": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-05-01",
+            "name": "mainTemplate",
+            "properties": {
+                "mode":"Incremental",
+                "parameters": {
+                    "location": { "value": "[parameters('location')]" },
+                    "_artifactLocation": { "value": "[variables('_artifactLocation')]" }
+                },
+                "templateLink": {
+                    "uri": "[uri(variables('_artifactLocation'), 'templates/deployRLO.json')]"
                 }
             }
         }
