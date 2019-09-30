@@ -10,6 +10,7 @@
         {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",
+            "name": "comtradeRLO",
             "location": "[parameters('rloCommon').location]",
             "properties": {
                 "name": "ComtradeRLO",
