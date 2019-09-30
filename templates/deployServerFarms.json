@@ -8,10 +8,14 @@
     },
     "resources": [
         {
-            "name": "",
+            "name": "rloServerFarm",
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
-            "location": "[parameters('rloCommon').location]"
+            "location": "[parameters('rloCommon').location]",
+            "kind": "app",
+            "sku": {
+                "name": "[parameters('rloCommon').serverFarmSku]"
+            }
         }
     ],
     "outputs": {}

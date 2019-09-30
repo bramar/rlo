@@ -43,6 +43,9 @@
         },
         "_artifactLocation": {
             "type": "string"
+        },
+        "serverFarmSku": {
+            "type": "string"
         }
     },
     "variables": {
@@ -60,7 +63,8 @@
             "publicIpNewOrExisting": "[parameters('publicIpNewOrExisting')]",
             "dnsNameForPublicIp": "[parameters('dnsNameForPublicIp')]",
             "publicIpAddressName": "[parameters('publicIpAddressName')]",
-            "baseArtifactLocation": "[parameters('_artifactLocation')]"
+            "baseArtifactLocation": "[parameters('_artifactLocation')]",
+            "serverFarmSku": "[parameters('serverFarmSku')]"
         }
     },
     "resources": [
@@ -76,6 +80,20 @@
                 },
                 "templateLink": {
                     "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployStorageAccount.json')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "serverFarmTemplate",
+            "apiVersion": "2019-05-01",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "rloCommon": { "value": "[variables('rloCommon')]" }
+                },
+                "templateLink": {
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployServerFarms.json')]"
                 }
             }
         }

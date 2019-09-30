@@ -18,7 +18,7 @@
                         "name": "adminUsername",
                         "type": "Microsoft.Compute.UserNameTextBox",
                         "label": "Admin Username",
-                        "toolTip": "Admin username to connect to VM",
+                        "toolTip": "Admin username to connect to SQL VM",
                         "osPlatform": "Windows",
                         "constraints": {
                             "required": true,
@@ -115,6 +115,40 @@
                             "hideNone": true
                         },
                         "visible": true
+                    },
+                    {
+                        "name": "serverFarmSku",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Server Farm Size",
+                        "defaultValue": "B1",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Basic Service Plan - B1",
+                                    "value": "B1"
+                                },
+                                {
+                                    "label": "Basic Service Plan - B2",
+                                    "value": "B2"
+                                },
+                                {
+                                    "label": "Basic Service Plan - B3",
+                                    "value": "B3"
+                                },
+                                {
+                                    "label": "Standard Service Plan - S1",
+                                    "value": "S1"
+                                },
+                                {
+                                    "label": "Standard Service Plan - S2",
+                                    "value": "S2"
+                                },
+                                {
+                                    "label": "Standard Service Plan - S3",
+                                    "value": "S3"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -132,7 +166,8 @@
             "addressPrefix": "[steps('rloconfig').virtualNetwork.subnets.rlosubnet.addressPrefix]",
             "publicIpNewOrExisting": "[steps('rloconfig').publicIp.newOrExistingOrNone]",
             "dnsNameForPublicIp": "[steps('rloconfig').publicIp.domainNameLabel]",
-            "publicIpAddressName": "[steps('rloconfig').publicIp.name]"
+            "publicIpAddressName": "[steps('rloconfig').publicIp.name]",
+            "serverFarmSku": "[steps('rloconfig').serverFarmSku]"
         }
     }
 }

@@ -4,7 +4,7 @@
     "parameters": {
         "storageAccountName": {
             "type": "string",
-            "defaultValue": "bramarRloTest"
+            "defaultValue": "bramarrlotest"
         },
         "storageNewOrExisting": {
             "type": "string",
@@ -53,6 +53,10 @@
         "publicIpAddressName": {
             "type": "string",
             "defaultValue": "rloct"
+        },
+        "serverFarmSku": {
+            "type": "string",
+            "defaultValue": "B1"
         }
     },
     "variables": {
@@ -93,7 +97,8 @@
                     "publicIpNewOrExisting": { "value": "[parameters('publicIpNewOrExisting')]"},
                     "dnsNameForPublicIp": { "value": "[parameters('dnsNameForPublicIp')]"},
                     "publicIpAddressName": { "value": "[parameters('publicIpAddressName')]"},
-                    "_artifactLocation": { "value": "[variables('_artifactLocation')]" }
+                    "_artifactLocation": { "value": "[variables('_artifactLocation')]" },
+                    "serverFarmSku": { "value": "[parameters('serverFarmSku')]" }
                 },
                 "templateLink": {
                     "uri": "[uri(variables('_artifactLocation'), 'templates/deployRLO.json')]"
