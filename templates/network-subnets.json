@@ -1,0 +1,29 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "rloCommon": {
+            "type": "object"
+        },
+        "subnetName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2017-10-01",
+            "name": "[parameters('subnetName')]",
+            "location": "[parameters('rloCommon').location]",
+            "properties": {
+                "addressPrefix": "[parameters('rloCommon').addressPrefix]"
+            }
+        }
+    ],
+    "outputs": {
+        "subnetId": {
+            "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('rloCommon').vnetName, 'subnet')]",
+            "type": "string"
+        }
+    }
+}
