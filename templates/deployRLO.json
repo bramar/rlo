@@ -2,7 +2,43 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "storageAccountName": {
+            "type": "string"
+        },
+        "storageNewOrExisting": {
+            "type": "string"
+        },
+        "storageAccountType": {
+            "type": "string"
+        },
         "location": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "string"
+        },
+        "vnetName": {
+            "type": "string"
+        },
+        "vnetAddressPrefix": {
+            "type": "string"
+        },
+        "addressPrefix": {
+            "type": "string"
+        },
+        "vnetNewOrExisting": {
+            "type": "string"
+        },
+        "publicIpNewOrExisting": {
+            "type": "string"
+        },
+        "dnsNameForPublicIp": {
+            "type": "string"
+        },
+        "publicIpAddressName": {
             "type": "string"
         },
         "_artifactLocation": {
@@ -11,7 +47,19 @@
     },
     "variables": {
         "rloCommon": {
+            "storageAccountName": "[parameters('storageAccountName')]",
+            "storageNewOrExisting": "[parameters('storageNewOrExisting')]",
+            "storageAccountType": "[parameters('storageAccountType')]",
             "location": "[parameters('location')]",
+            "adminUsername": "[parameters('adminUsername')]",
+            "adminPassword": "[parameters('adminPassword')]",
+            "vnetName": "[parameters('vnetName')]",
+            "vnetAddressPrefix": "[parameters('vnetAddressPrefix')]",
+            "addressPrefix": "[parameters('addressPrefix')]",
+            "vnetNewOrExisting": "[parameters('vnetNewOrExisting')]",
+            "publicIpNewOrExisting": "[parameters('publicIpNewOrExisting')]",
+            "dnsNameForPublicIp": "[parameters('dnsNameForPublicIp')]",
+            "publicIpAddressName": "[parameters('publicIpAddressName')]",
             "baseArtifactLocation": "[parameters('_artifactLocation')]"
         }
     }

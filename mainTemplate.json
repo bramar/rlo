@@ -2,12 +2,51 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "storageAccountName": {
+            "type": "string"
+        },
+        "storageNewOrExisting": {
+            "type": "string",
+            "defaultValue": "new"
+        },
+        "storageAccountType": {
+            "type": "string"
+        },
         "location": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "string"
+        },
+        "vnetName": {
+            "type": "string"
+        },
+        "vnetAddressPrefix": {
+            "type": "string"
+        },
+        "vnetNewOrExisting": {
+            "type": "string"
+        },
+        "addressPrefix": {
+            "type": "string"
+        },
+        "publicIpNewOrExisting": {
+            "type": "string"
+        },
+        "dnsNameForPublicIp": {
+            "type": "string"
+        },
+        "publicIpAddressName": {
             "type": "string"
         }
     },
     "variables": {
-        "_artifactLocation": "[deployment().properties.templateLink.uri]"
+        "develop": "https://raw.githubusercontent.com/bramar/rlo/master/",
+        "prod": "[deployment().properties.templateLink.uri]"
+        "_artifactLocation": "[variables('develop')]"
     },
     "resources": [
         {
@@ -30,7 +69,19 @@
             "properties": {
                 "mode":"Incremental",
                 "parameters": {
+                    "storageAccountName": { "value": "[parameters('storageAccountName')]" },
+                    "storageNewOrExisting": { "value": "[parameters('storageNewOrExisting')]" },
+                    "storageAccountType": { "value": "[parameters('storageAccountType')]" },
                     "location": { "value": "[parameters('location')]" },
+                    "adminUsername": { "value": "[parameters('adminUsername')]"},
+                    "adminPassword": { "value": "[parameters('adminPassword')]"},
+                    "vnetName": { "value": "[parameters('vnetName')]"},
+                    "vnetAddressPrefix": { "value": "[parameters('vnetAddressPrefix')]"},
+                    "addressPrefix": { "value": "[parameters('addressPrefix')]"},
+                    "vnetNewOrExisting": { "value": "[parameters('vnetNewOrExisting')]"},
+                    "publicIpNewOrExisting": { "value": "[parameters('publicIpNewOrExisting')]"},
+                    "dnsNameForPublicIp": { "value": "[parameters('dnsNameForPublicIp')]"},
+                    "publicIpAddressName": { "value": "[parameters('publicIpAddressName')]"},
                     "_artifactLocation": { "value": "[variables('_artifactLocation')]" }
                 },
                 "templateLink": {

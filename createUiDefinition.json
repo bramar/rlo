@@ -13,9 +13,126 @@
                     "postValidation": "Done"
                 },
                 "bladeTitle": "Virtual Machine Settings",
-                "elements": []
+                "elements": [
+                    {
+                        "name": "adminUsername",
+                        "type": "Microsoft.Compute.UserNameTextBox",
+                        "label": "Admin Username",
+                        "toolTip": "Admin username to connect to VM",
+                        "osPlatform": "Windows",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[a-zA-Z][a-zA-Z]{4,15}$",
+                            "validationMessage": "Only letters allowed and 5 to 16 characters allowed."
+                        }
+                    },
+                    {
+                        "name": "adminPassword",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                            "password": "Admin Password",
+                            "confirmPassword": "Repeat Admin Password"
+                        },
+                        "toolTip": {
+                            "password": "Password for amin user"
+                        },
+                        "osPlatform": "Windows",
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "storageAccount",
+                        "type": "Microsoft.Storage.StorageAccountSelector",
+                        "label": "Storage account",
+                        "toolTip": "Storage account used for deployment",
+                        "defaultValue": {
+                            "type": "Standard_LRS",
+                            "name": "[concat('rlo', take(replace(guid(), '-', ''), 10))]"
+                        },
+                        "constraints": {
+                            "allowedTypes": [
+                                "Premium_LRS",
+                                "Standard_LRS",
+                                "Standard_GRS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "virtualNetwork",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
+                        "label": {
+                            "virtualNetwork": "Virtual Network",
+                            "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                            "virtualNetwork": "Virtual Network for RLO",
+                            "subnets": "Subnets inside Virtual Network"
+                        },
+                        "defaultValue": {
+                            "name": "rlonet",
+                            "addressPrefixSize": "/16"
+                        },
+                        "constraints": {
+                            "minAddressPrefixSize": "/16"
+                        },
+                        "options": {
+                            "hideExisting": false
+                        },
+                        "subnets": {
+                            "rlosubnet": {
+                                "label": "RLO Subnet",
+                                "defaultValue": {
+                                    "name": "rlosubnet",
+                                    "addressPrefixSize": "/24"
+                                },
+                                "constraints": {
+                                    "minAddressPrefixSize": "/24"
+                                }
+                            }
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "publicIp",
+                        "type": "Microsoft.Network.PublicIpAddressCombo",
+                        "label": {
+                            "publicIpAddress": "Public IP Address for RLO",
+                            "domainNameLabel": "DNS Label for FQDN Access to RLO Services"
+                        },
+                        "defaultValue": {
+                            "publicIpAddressName": "rlopubip",
+                            "domainNameLabel": "rloct"
+                        },
+                        "constraints": {
+                            "required": {
+                                "domainNameLabel": true
+                            }
+                        },
+                        "options": {
+                            "hideDomainNameLabel": false,
+                            "hideExisting": true,
+                            "hideNone": true
+                        },
+                        "visible": true
+                    }
+                ]
             }
         ],
-        "outputs": {}
+        "outputs": {
+            "storageAccountName": "[steps('rloconfig').storageAccount.Name]",
+            "storageNewOrExisting": "[steps('rloconfig').storageAccount.newOrExisting]",
+            "storageAccountType": "[steps('rloconfig').storageAccount.type]",
+            "location": "[location()]",
+            "adminUsername": "[steps('rloconfig').adminUsername]",
+            "adminPassword": "[steps('rloconfig').adminPassword.password]",
+            "vnetName": "[steps('rloconfig').virtualNetwork.name]",
+            "vnetAddressPrefix": "[steps('rloconfig').virtualNetwork.addressPrefix]",
+            "vnetNewOrExisting": "[steps('rloconfig').virtualNetwork.newOrExisting]",
+            "addressPrefix": "[steps('rloconfig').virtualNetwork.subnets.rlosubnet.addressPrefix]",
+            "publicIpNewOrExisting": "[steps('rloconfig').publicIp.newOrExistingOrNone]",
+            "dnsNameForPublicIp": "[steps('rloconfig').publicIp.domainNameLabel]",
+            "publicIpAddressName": "[steps('rloconfig').publicIp.name]"
+        }
     }
 }
