@@ -32,10 +32,12 @@
                         "setParameters": {
                             "IIS Web Application Name": "Comtrade RLO"
                         },
-                        "appSettings": [{
-                            "Name": "",
-                            "Value": ""
-                        }]
+                        "appSettings": [
+                            {
+                                "Name": "",
+                                "Value": ""
+                            }
+                        ]
                     }
                 },
                 {
@@ -52,3 +54,4 @@
             ]
         }
     ]
+}
