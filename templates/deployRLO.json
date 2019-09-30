@@ -126,7 +126,7 @@
                     "domainNameLabel": { "value": "[reference('networkTemplate').outputs.domainNameLabel.value]" }
                 },
                 "templateLink": {
-                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')] "
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')]"
                 }
             }
         }
