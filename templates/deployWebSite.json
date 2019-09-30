@@ -4,6 +4,9 @@
     "parameters": {
         "rloCommon": {
             "type": "object"
+        },
+        "domainNameLabel": {
+            "type": "string"
         }
     },
     "resources": [
@@ -48,7 +51,7 @@
                         "[resourceId('Microsoft.Web/Sites', 'ComtradeRLO')]"
                     ],
                     "properties": {
-                        "connectionStrings": "[concat('Data Source=tcp:', reference(parameters('rloCommon').publicIpAddressName).dnsSettings.fqdn, ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
+                        "connectionStrings": "[concat('Data Source=tcp:', parameters('domainNameLabel'), ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
                     }
                 }
             ]

@@ -110,6 +110,25 @@
                     "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/network.json')]"
                 }
             }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "deployWebSite",
+            "apiVersion": "2019-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/networkTemplate",
+                "Microsoft.Resources/deployments/serverFarmTemplate"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "rloCommon": { "value": "[variables('rloCommon')]" },
+                    "domainNameLabel": { "value": "[reference('networkTemplate').outputs.domainNameLabel.value]" }
+                },
+                "templateLink": {
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')] "
+                }
+            }
         }
     ]
 }
