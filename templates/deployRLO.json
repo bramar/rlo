@@ -107,7 +107,7 @@
             "properties": {
                 "mode":"Incremental",
                 "parameters": {
-                    "rloCommon": { "vale": "[variables('rloCommon')]" }
+                    "rloCommon": { "value": "[variables('rloCommon')]" }
                 },
                 "templateLink": {
                     "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')]"
