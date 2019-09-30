@@ -33,7 +33,7 @@
             "properties": {
                 "mode": "Incremental",
                 "parameters": {
-                    "tEduCommon": { "value": "[parameters('rloCommon')]" },
+                    "rloCommon": { "value": "[parameters('rloCommon')]" },
                     "subnetName": { "value": "[concat(parameters('rloCommon').vnetName, '/subnet')]" }
                 },
                 "templateLink": {
@@ -48,7 +48,7 @@
             "properties": {
                 "mode": "Incremental",
                 "parameters": {
-                    "tEduCommon": { "value": "[parameters('rloCommon')]"}
+                    "rloCommon": { "value": "[parameters('rloCommon')]"}
                 },
                 "templateLink": {
                     "uri": "[uri(parameters('rloCommon').baseArtifactLocation, 'templates/publicip.json')]"
