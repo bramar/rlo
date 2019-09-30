@@ -63,5 +63,21 @@
             "baseArtifactLocation": "[parameters('_artifactLocation')]"
         }
     },
-    "resources": []
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "storageAccountTemplate",
+            "apiVersion": "2019-05-01",
+            "condition": "[equals(variables('rloCommon').storageNewOrExisting, 'new')]",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "rloCommon": { "value": "[variables('rloCommon')]" }
+                },
+                "templateLink": {
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployStorageAccount.json')]"
+                }
+            }
+        }
+    ]
 }
