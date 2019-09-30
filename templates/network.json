@@ -19,7 +19,7 @@
                     }
                 },
                 "templateLink": {
-                    "uri": "[uri(parameters('rloCommon').baseTemplateUrl, 'templates/network-vnet.json')]"
+                    "uri": "[uri(parameters('rloCommon').baseArtifactLocation, 'templates/network-vnet.json')]"
                 }
             }
         }
