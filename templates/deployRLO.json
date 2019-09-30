@@ -62,5 +62,6 @@
             "publicIpAddressName": "[parameters('publicIpAddressName')]",
             "baseArtifactLocation": "[parameters('_artifactLocation')]"
         }
-    }
+    },
+    "resources": []
 }

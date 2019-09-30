@@ -3,49 +3,60 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "bramarRloTest"
         },
         "storageNewOrExisting": {
             "type": "string",
             "defaultValue": "new"
         },
         "storageAccountType": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Standard_LRS"
         },
         "location": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]"
         },
         "adminUsername": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "bramar"
         },
         "adminPassword": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "AlfaRomeo156"
         },
         "vnetName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "rlonet"
         },
         "vnetAddressPrefix": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "10.0.0.0/16"
         },
         "vnetNewOrExisting": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "new"
         },
         "addressPrefix": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "10.0.0.0/24"
         },
         "publicIpNewOrExisting": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "new"
         },
         "dnsNameForPublicIp": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "rlopubip"
         },
         "publicIpAddressName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "rloct"
         }
     },
     "variables": {
         "develop": "https://raw.githubusercontent.com/bramar/rlo/master/",
-        "prod": "[deployment().properties.templateLink.uri]"
         "_artifactLocation": "[variables('develop')]"
     },
     "resources": [
