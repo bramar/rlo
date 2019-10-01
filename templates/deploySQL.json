@@ -41,7 +41,7 @@
             "apiVersion": "2019-03-01",
             "location": "[parameters('rloCommon').location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkIntefaces', 'rlonic')]"
+                "[resourceId('Microsoft.Network/networkInterfaces', 'rlonic')]"
             ],
             "properties": {
                 "osProfile": {
