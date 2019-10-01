@@ -148,6 +148,9 @@
                     "rloCommon": { "value": "[variables('rloCommon')]" },
                     "subnetId": { "value": "[reference('networkTemplate').outputs.subnetId.value]"},
                     "publicIpId": { "value": "[reference('networkTemplate').outputs.publicIpId.value]" }
+                },
+                "templateLink": {
+                    "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deploySQL.json')]"
                 }
             }
         }
