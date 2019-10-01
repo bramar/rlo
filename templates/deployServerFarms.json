@@ -17,7 +17,7 @@
                 "name": "[parameters('rloCommon').serverFarmSku]"
             },
             "properties": {
-                "name": "rloServerFarm",
+                "name": "rloServerFarmWorkers",
                 "numberOfWorkers": 1
             }
         }

@@ -76,7 +76,7 @@
                         {
                             "metricTrigger": {
                                 "metricName": "CpuPercentage",
-                                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsofr.web/serverfarms/', 'rloServerFarm')]",
+                                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.web/serverfarms/', 'rloServerFarm')]",
                                 "timeGrain": "PT1M",
                                 "statistics": "Average",
                                 "timeWindow": "PT10M",
@@ -94,7 +94,7 @@
                         {
                             "metricTrigger": {
                                 "metricName": "CpuPercentage",
-                                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsofr.web/serverfarms/', 'rloServerFarm')]",
+                                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.web/serverfarms/', 'rloServerFarm')]",
                                 "timeGrain": "PT1M",
                                 "statistics": "Average",
                                 "timeWindow": "PT1H",
@@ -113,7 +113,7 @@
                 }],
                 "enabled": false,
                 "name": "AutoscaleRLO",
-                "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsofr.web/serverfarms/', 'rloServerFarm')]"
+                "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.web/serverfarms/', 'rloServerFarm')]"
             }
         }
     ]
