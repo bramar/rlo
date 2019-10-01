@@ -57,6 +57,10 @@
         "serverFarmSku": {
             "type": "string",
             "defaultValue": "B1"
+        },
+        "sqlSize": {
+            "type": "string",
+            "defaultValue": "Standard_D2s_v3"
         }
     },
     "variables": {
@@ -98,7 +102,8 @@
                     "dnsNameForPublicIp": { "value": "[parameters('dnsNameForPublicIp')]"},
                     "publicIpAddressName": { "value": "[parameters('publicIpAddressName')]"},
                     "_artifactLocation": { "value": "[variables('_artifactLocation')]" },
-                    "serverFarmSku": { "value": "[parameters('serverFarmSku')]" }
+                    "serverFarmSku": { "value": "[parameters('serverFarmSku')]" },
+                    "sqlSize": { "value": "[parameters('sqlSize')]" }
                 },
                 "templateLink": {
                     "uri": "[uri(variables('_artifactLocation'), 'templates/deployRLO.json')]"

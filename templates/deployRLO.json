@@ -46,6 +46,9 @@
         },
         "serverFarmSku": {
             "type": "string"
+        },
+        "sqlSize": {
+            "type": "string"
         }
     },
     "variables": {
@@ -64,7 +67,8 @@
             "dnsNameForPublicIp": "[parameters('dnsNameForPublicIp')]",
             "publicIpAddressName": "[parameters('publicIpAddressName')]",
             "baseArtifactLocation": "[parameters('_artifactLocation')]",
-            "serverFarmSku": "[parameters('serverFarmSku')]"
+            "serverFarmSku": "[parameters('serverFarmSku')]",
+            "sqlSize": "[parameters('sqlSize')]"
         }
     },
     "resources": [
@@ -128,6 +132,22 @@
                 },
                 "templateLink": {
                     "uri": "[uri(variables('rloCommon').baseArtifactLocation, 'templates/deployWebSite.json')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "sqlServerDeploy",
+            "apiVersion": "2019-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/webSiteDeploy"
+            ],
+            "properties": {
+                "mode":"Incremental",
+                "parameters": {
+                    "rloCommon": { "value": "[variables('rloCommon')]" },
+                    "subnetId": { "value": "[reference('networkTemplate').outputs.subnetId.value]"},
+                    "publicIpId": { "value": "[reference('networkTemplate').outputs.publicIpId.value]" }
                 }
             }
         }

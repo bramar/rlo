@@ -1,0 +1,141 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "rloCommon": {
+            "type": "object"
+        },
+        "subnetId": {
+            "type": "string"
+        },
+        "publicIpId": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2019-04-01",
+            "name": "rlonic",
+            "location": "[parameters('rloCommon').location]",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAllocationMethod":"Dynamic",
+                            "subnet": {
+                                "id": "[parameters('subnetId')]"
+                            },
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIpId')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "ComtradeRLOSQL",
+            "apiVersion": "2019-03-01",
+            "location": "[parameters('rloCommon').location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkIntefaces', 'rlonic')]"
+            ],
+            "properties": {
+                "osProfile": {
+                    "adminUsername": "[parameters('rloCommon').adminUsername]",
+                    "adminPassword": "[parameters('rloCommon').adminPassword]",
+                    "computerName": "CTRLOSQL",
+                    "windowsConfiguration": {
+                        "provisionVMAgent":true
+                    }
+                },
+                "hardwareProfile": {
+                    "vmSize": "[parameters('rloCommon').sqlSize]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSQLServer",
+                        "offer": "SQL2017-WS1016",
+                        "sku": "SQLDEV",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption":"FromImage"
+                    },
+                    "dataDisks": [
+                        {
+                            "createOption": "Empty",
+                            "lun": 0,
+                            "diskSizeGB": 200,
+                            "caching": "ReadOnly",
+                            "name": "comtraderlosql-disk1"
+                        }
+                    ]
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', 'rlonic')]"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2019-03-01",
+            "name": "ComtradeRLOSQL/SqlIaasAgent",
+            "location": "[parameters('rloCommon').location]",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/','ComtradeRLOSQL')]"
+            ],
+            "properties": {
+                "type": "SqlIaasAgent",
+                "publisher": "Microsoft.SqlServer.Management",
+                "typeHandlerVersion": "1.2",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "AutoTelemetrySettings": {
+                        "Region": "[parameters('rloCommon').location]"
+                    },
+                    "AutoPatchSettings": {
+                        "PatchCategory": "WindowsManadatoryUpdates",
+                        "Enable": true,
+                        "DayOfWeek": "Sunday",
+                        "MaintenanceWindowStartingHour": "2",
+                        "MaintenanceWindowDuration": "60"
+                    },
+                    "KeyVaultCredentialSettings": {
+                        "Enable": false,
+                        "CredentialName": ""
+                    },
+                    "ServerConfigurationsManagementSettings": {
+                        "SQLConnectivityUpdateSettings": {
+                            "ConnectivityType": "Public",
+                            "Port": "1433"
+                        },
+                        "SQLWorkloadTypeUpdateSettings": {
+                            "SQLWorkloadType": "GENERAL"
+                        },
+                        "SQLStorageUpdateSettings": {
+                            "DiskCount": "1",
+                            "NumberOfColumns": "1",
+                            "StartingDeviceId": "2",
+                            "DiskConfigurationType": "NEW"
+                        },
+                        "AdditionalFeaturesServerConfigurations": {
+                            "IsRServicesEnabled": "false"
+                        }
+                    }
+                },
+                "protectedSettings": {
+                    "SQLAuthUpdateUserName": "[parameters('rloCommon').adminUsername]",
+                    "SQLAuthUpdatePassword": "[parameters('rloCommon').adminPassword]"
+                }
+            }
+        }
+    ]
+}
