@@ -29,7 +29,7 @@
                         "[resourceId('Microsoft.Web/sites','ComtradeRLO')]"
                     ],
                     "properties": {
-                        "packageUri": "[uri(parameters('rloCommon').baseArtifactLocation,'webapp/package.zip')]",
+                        "packageUri": "[uri(parameters('rloCommon').baseArtifactLocation,'/webapp/package.zip')]",
                         "dbType": "",
                         "connectionString": "",
                         "setParameters": {

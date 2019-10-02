@@ -58,7 +58,7 @@
                 "storageProfile": {
                     "imageReference": {
                         "publisher": "MicrosoftSQLServer",
-                        "offer": "SQL2017-WS1016",
+                        "offer": "SQL2019-WS2016",
                         "sku": "SQLDEV",
                         "version": "latest"
                     },
