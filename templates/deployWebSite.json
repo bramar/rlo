@@ -16,7 +16,6 @@
             "name": "ComtradeRLO",
             "location": "[parameters('rloCommon').location]",
             "properties": {
-                "name": "ComtradeRLO",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'rloServerFarm')]"
             },
             "resources": [
@@ -48,7 +47,7 @@
                     "name": "appsettings",
                     "type": "config",
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/Sites', 'ComtradeRLO')]"
+                        "[resourceId('Microsoft.Web/sites', 'ComtradeRLO')]"
                     ],
                     "properties": {
                         "connectionStrings": "[concat('Data Source=tcp:', parameters('domainNameLabel'), ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
