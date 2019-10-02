@@ -21,7 +21,7 @@
             "resources": [
                 {
                     "name": "MSDeploy",
-                    "type": "siteextensions",
+                    "type": "extensions",
                     "location": "[parameters('rloCommon').location]",
                     "apiVersion": "2018-11-01",
                     "dependsOn": [
