@@ -29,18 +29,12 @@
                         "[resourceId('Microsoft.Web/sites','ComtradeRLO')]"
                     ],
                     "properties": {
-                        "packageUri": "https://raw.githubusercontent.com/bramar/rlo/master/webapp/package.zip",
+                        "packageUri": "[concat(parameters('rloCommon').baseArtifactLocation, '/webapp/package.zip')]",
                         "dbType": "",
                         "connectionString": "",
                         "setParameters": {
                             "IIS Web Application Name": "Comtrade RLO"
-                        },
-                        "appSettings": [
-                            {
-                                "Name": "",
-                                "Value": ""
-                            }
-                        ]
+                        }
                     }
                 },
                 {
