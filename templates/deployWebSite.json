@@ -14,7 +14,6 @@
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",
             "name": "ComtradeRLO",
-            "kind": "",
             "location": "[parameters('rloCommon').location]",
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'rloServerFarm')]"
