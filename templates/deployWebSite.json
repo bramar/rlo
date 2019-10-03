@@ -25,7 +25,7 @@
                     "location": "[parameters('rloCommon').location]",
                     "apiVersion": "2018-11-01",
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites','ComtradeRLO')]"
+                        "[concat('Microsoft.Web/sites/','ComtradeRLO')]"
                     ],
                     "properties": {
                         "packageUri": "[concat(parameters('rloCommon').baseArtifactLocation, '/webapp/package.zip')]",
@@ -41,8 +41,8 @@
                     "name": "appsettings",
                     "type": "config",
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites', 'ComtradeRLO')]",
-                        "[resourceId('Microsoft.Web/sites/ComtradeRLO/extensions','MSDeploy')]"
+                        "[concat('Microsoft.Web/sites/', 'ComtradeRLO')]",
+                        "[concat('Microsoft.Web/sites/ComtradeRLO/extensions','/MSDeploy')]"
                     ],
                     "properties": {
                         "connectionStrings": "[concat('Data Source=tcp:', parameters('domainNameLabel'), ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
