@@ -45,7 +45,7 @@
                         "[concat('Microsoft.Web/sites/ComtradeRLO/extensions','/MSDeploy')]"
                     ],
                     "properties": {
-                        "connectionStrings": "[concat('Data Source=tcp:', parameters('domainNameLabel'), ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
+                        "connectionString": "[concat('Data Source=tcp:', parameters('domainNameLabel'), ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
                     }
                 }
             ]
