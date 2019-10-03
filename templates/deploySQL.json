@@ -87,7 +87,7 @@
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "apiVersion": "2019-03-01",
-            "name": "ComtradeRLOSQL/SqlIaasAgent",
+            "name": "ComtradeRLOSQL/SqlIaasExtension",
             "location": "[parameters('rloCommon').location]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/','ComtradeRLOSQL')]"
