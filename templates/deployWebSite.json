@@ -42,7 +42,8 @@
                     "name": "appsettings",
                     "type": "config",
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites', 'ComtradeRLO')]"
+                        "[resourceId('Microsoft.Web/sites', 'ComtradeRLO')]",
+                        "[resourceId('Microsoft.Web/sites/extensions','MSDeploy')]"
                     ],
                     "properties": {
                         "connectionStrings": "[concat('Data Source=tcp:', parameters('domainNameLabel'), ';Initial Catalog=rlodb;User ID=',parameters('rloCommon').adminUsername,';Password=',parameters('rloCommon').adminPassword,';')]"
