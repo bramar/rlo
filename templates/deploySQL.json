@@ -101,7 +101,7 @@
                     "AutoTelemetrySettings": {
                         "Region": "[parameters('rloCommon').location]"
                     },
-                    "AutoPatchSettings": {
+                    "AutoPatchingSettings": {
                         "PatchCategory": "WindowsManadatoryUpdates",
                         "Enable": true,
                         "DayOfWeek": "Sunday",
@@ -114,7 +114,7 @@
                     },
                     "ServerConfigurationsManagementSettings": {
                         "SQLConnectivityUpdateSettings": {
-                            "ConnectivityType": "Public",
+                            "ConnectivityType": "PUBLIC",
                             "Port": "1433"
                         },
                         "SQLWorkloadTypeUpdateSettings": {
