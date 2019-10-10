@@ -98,20 +98,6 @@
                 "typeHandlerVersion": "1.2",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                    "AutoTelemetrySettings": {
-                        "Region": "[parameters('rloCommon').location]"
-                    },
-                    "AutoPatchingSettings": {
-                        "PatchCategory": "WindowsManadatoryUpdates",
-                        "Enable": true,
-                        "DayOfWeek": "Sunday",
-                        "MaintenanceWindowStartingHour": "2",
-                        "MaintenanceWindowDuration": "60"
-                    },
-                    "KeyVaultCredentialSettings": {
-                        "Enable": false,
-                        "CredentialName": ""
-                    },
                     "ServerConfigurationsManagementSettings": {
                         "SQLConnectivityUpdateSettings": {
                             "ConnectivityType": "PUBLIC",
