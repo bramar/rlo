@@ -98,6 +98,9 @@
                 "typeHandlerVersion": "1.2",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
+                    "AutoTelemetrySettings": {
+                        "Region": "[parameters('rloCommon').location]"
+                    },
                     "ServerConfigurationsManagementSettings": {
                         "SQLConnectivityUpdateSettings": {
                             "ConnectivityType": "PUBLIC",
