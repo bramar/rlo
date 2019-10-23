@@ -108,27 +108,27 @@
                         "Enable": false
                     },
                     "ServerConfigurationsManagementSettings": {
-                        "SQLConnectivityUpdateSettings": {
+                        "sqlConnectivityUpdateSettings": {
                             "ConnectivityType": "PUBLIC",
                             "Port": "1433"
                         },
-                        "SQLWorkloadTypeUpdateSettings": {
-                            "SQLWorkloadType": "GENERAL"
+                        "sqlWorkloadTypeUpdateSettings": {
+                            "SqlWorkloadType": "GENERAL"
                         },
-                        "SQLStorageUpdateSettings": {
+                        "sqlStorageUpdateSettings": {
                             "DiskCount": 1,
                             "NumberOfColumns": 1,
                             "StartingDeviceId": 2,
                             "DiskConfigurationType": "NEW"
                         },
-                        "AdditionalFeaturesServerConfigurations": {
-                            "IsRServicesEnabled": "false"
+                        "additionalFeaturesServerConfigurations": {
+                            "isRServicesEnabled": "false"
                         }
                     }
                 },
                 "protectedSettings": {
-                    "SQLAuthUpdateUserName": "[parameters('rloCommon').adminUsername]",
-                    "SQLAuthUpdatePassword": "[parameters('rloCommon').adminPassword]"
+                    "sqlAuthUpdateUserName": "[parameters('rloCommon').adminUsername]",
+                    "sqlAuthUpdatePassword": "[parameters('rloCommon').adminPassword]"
                 }
             }
         }
