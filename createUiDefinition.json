@@ -185,7 +185,7 @@
             }
         ],
         "outputs": {
-            "storageAccountName": "[steps('rloconfig').storageAccount.Name]",
+            "storageAccountName": "[steps('rloconfig').storageAccount.name]",
             "storageNewOrExisting": "[steps('rloconfig').storageAccount.newOrExisting]",
             "storageAccountType": "[steps('rloconfig').storageAccount.type]",
             "location": "[location()]",
