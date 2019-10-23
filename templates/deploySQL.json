@@ -116,8 +116,8 @@
                             "SQLWorkloadType": "GENERAL"
                         },
                         "SQLStorageUpdateSettings": {
-                            "DiskCount": "1",
-                            "NumberOfColumns": "1",
+                            "DiskCount": 1,
+                            "NumberOfColumns": 1,
                             "StartingDeviceId": 2,
                             "DiskConfigurationType": "NEW"
                         },
