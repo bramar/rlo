@@ -28,7 +28,7 @@
                         "[concat('Microsoft.Web/sites/','ComtradeRLO')]"
                     ],
                     "properties": {
-                        "packageUri": "[concat(parameters('rloCommon').baseArtifactLocation, '/webapp/package.zip')]",
+                        "packageUri": "[uri(parameters('rloCommon').baseArtifactLocation, 'webapp/package.zip')]",
                         "dbType": "",
                         "connectionString": "",
                         "setParameters": {
