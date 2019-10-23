@@ -151,6 +151,35 @@
                             "required": true
                         },
                         "visible": true
+                    },
+                    {
+                        "name": "sqlSize",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "SQL Virtual Machine Size",
+                        "toolTip": "SQL Virtual Machine Size",
+                        "recommendedSizes": [
+                            "Standard_D4s_v3",
+                            "Standard_D8s_v2",
+                            "Standard_D4_v3",
+                            "Standard_D8_v3",
+                            "Standard_B4ms",
+                            "Standard_B8ms"
+                        ],
+                        "constraints": {
+                            "allowedSizes": [
+                                "Standard_D4s_v3",
+                                "Standard_D8s_v2",
+                                "Standard_D4_v3",
+                                "Standard_D8_v3",
+                                "Standard_B4ms",
+                                "Standard_B8ms"
+                            ]
+                        },
+                        "options": {
+                            "hideDiskTypeFilter": false
+                        },
+                        "osPlatform": "Windows",
+                        "count": 1
                     }
                 ]
             }
@@ -169,7 +198,8 @@
             "publicIpNewOrExisting": "[steps('rloconfig').publicIp.newOrExistingOrNone]",
             "dnsNameForPublicIp": "[steps('rloconfig').publicIp.domainNameLabel]",
             "publicIpAddressName": "[steps('rloconfig').publicIp.name]",
-            "serverFarmSku": "[steps('rloconfig').serverFarmSku]"
+            "serverFarmSku": "[steps('rloconfig').serverFarmSku]",
+            "sqlSize": "[steps('rloconfig').sqlSize"
         }
     }
 }

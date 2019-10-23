@@ -3,60 +3,46 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "type": "string",
-            "defaultValue": "bramarrlotest"
+            "type": "string"
         },
         "storageNewOrExisting": {
-            "type": "string",
-            "defaultValue": "new"
+            "type": "string"
         },
         "storageAccountType": {
-            "type": "string",
-            "defaultValue": "Standard_LRS"
+            "type": "string"
         },
         "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]"
+            "type": "string"
         },
         "adminUsername": {
-            "type": "string",
-            "defaultValue": "bramar"
+            "type": "string"
         },
         "adminPassword": {
-            "type": "string",
-            "defaultValue": "AlfaRomeo156"
+            "type": "string"
         },
         "vnetName": {
-            "type": "string",
-            "defaultValue": "rlonet"
+            "type": "string"
         },
         "vnetAddressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16"
+            "type": "string"
         },
         "vnetNewOrExisting": {
-            "type": "string",
-            "defaultValue": "new"
+            "type": "string"
         },
         "addressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/24"
+            "type": "string"
         },
         "publicIpNewOrExisting": {
-            "type": "string",
-            "defaultValue": "new"
+            "type": "string"
         },
         "dnsNameForPublicIp": {
-            "type": "string",
-            "defaultValue": "rlopubip"
+            "type": "string"
         },
         "publicIpAddressName": {
-            "type": "string",
-            "defaultValue": "rloct"
+            "type": "string"
         },
         "serverFarmSku": {
-            "type": "string",
-            "defaultValue": "B1"
+            "type": "string"
         },
         "sqlSize": {
             "type": "string",
@@ -64,8 +50,7 @@
         }
     },
     "variables": {
-        "develop": "https://raw.githubusercontent.com/bramar/rlo/master/",
-        "_artifactLocation": "[variables('develop')]"
+        "_artifactLocation": "[deployment().properties.templateLink.uri]"
     },
     "resources": [
         {
